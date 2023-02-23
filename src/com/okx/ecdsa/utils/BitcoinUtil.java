@@ -3,7 +3,6 @@ package com.okx.ecdsa.utils;
 import java.math.BigInteger;
 
 /**
- * bitcoin协议构建工具包
  * @author William Liu
  */
 public class BitcoinUtil {
@@ -21,7 +20,6 @@ public class BitcoinUtil {
     public static String TRANSACTION_HASH_TYPE_1 = "01000000";
 
     /**
-     * 输入output index
      * @author William Liu
      * @param index
      * @return
@@ -37,7 +35,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * 输入inputs或outputs数量
      * @author William Liu
      * @param num
      * @return
@@ -52,7 +49,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * 输入长度
      * @author William Liu
      * @param num
      * @return
@@ -67,7 +63,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * btc数量标准化输出
      * @author William Liu
      * @param satoshis
      * @return
@@ -84,7 +79,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * btc数量标准化输出
      * @author William Liu
      * @param btc
      * @return
@@ -101,7 +95,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * 返回little endian(低字节序)
      * @author William Liu
      * @param hex
      * @return
@@ -133,8 +126,6 @@ public class BitcoinUtil {
     }
 
     /**
-     * 地址解析成OPCODE
-     * 6f和c4分别表示测试网派p2pkh和p2sh,主网分别是00和05
      * see https://en.bitcoin.it/wiki/Address
      * @author William Liu
      * @param to

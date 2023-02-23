@@ -68,7 +68,6 @@ public class HashUtil {
     }
 
     /**
-     * SHA3标准
      * @param hexInput
      * @return
      */
@@ -104,7 +103,6 @@ public class HashUtil {
     }
 
     /**
-     * 仅能用在字符串的hash上，16进制字符串勿用
      * @param str
      * @return
      */

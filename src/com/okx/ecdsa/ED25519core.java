@@ -10,7 +10,6 @@ import java.math.BigInteger;
 /**
  *  ED25519 CORE
  * @author Jason LI
- *  - MetaX
  */
 public class ED25519core {
     static BigInteger ZERO = new BigInteger("0");
@@ -55,7 +54,7 @@ public class ED25519core {
 
         String privateKey = new BigInteger(h.substring(0,b/4),16).toString(2); 
 
-        privateKey = padString(privateKey);     //左边补零至256bit
+        privateKey = padString(privateKey);    
         privateKey = "11111000" + privateKey.substring(8,248) + "10" + privateKey.substring(250);
         privateKey = new BigInteger(privateKey,2).toString(16);
 
@@ -82,60 +81,7 @@ public class ED25519core {
     }
 
     /**
-     * 签名
-     * @author William Liu
-     * @param message 消息的hash
-     * @param privateKey
-     * @return
-     */
-//     public String[] sign(String message,String privateKey){
-//         String[] signature = new String[2];
-//         BigInteger r, s;
-//         do {
-
-//             BigInteger k = new BigInteger(HashUtil.getSHA(Math.random() + System.currentTimeMillis() + "THHAhshjaYYHJSA^HGHSA", "SHA-256"), 16);
-//             r = fastMultiply(k).getX().mod(p);
-//             s = (new BigInteger(message, 16).add(new BigInteger(privateKey, 16).multiply(r))).multiply(k.modInverse(n)).mod(n);
-
-//             //standrad bitcoin signature SIG is <r><s> concatenated together.
-//             // We need to check s < N/2 where N is the curve order, .
-//             // If s>N/2, then s = N-s
-// //        if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
-// //            s = n.subtract(s);
-// //        }
-
-//             signature[0] = r.toString(16);
-//             signature[1] = s.toString(16);
-
-//         }while (isValidSignature(r,s));
-//         return formatSign(signature);
-//     }
-
-//     public String[] signWithAssignedK(String message,String privateKey, BigInteger k){
-//         String[] signature = new String[2];
-//         BigInteger r, s;
-//         do {
-
-//             //BigInteger k = new BigInteger(HashUtil.getSHA(Math.random() + System.currentTimeMillis() + "THHAhshjaYYHJSA^HGHSA", "SHA-256"), 16);
-//             r = fastMultiply(k).getX().mod(p);
-//             s = (new BigInteger(message, 16).add(new BigInteger(privateKey, 16).multiply(r))).multiply(k.modInverse(n)).mod(n);
-
-//             //standrad bitcoin signature SIG is <r><s> concatenated together.
-//             // We need to check s < N/2 where N is the curve order, .
-//             // If s>N/2, then s = N-s
-// //        if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
-// //            s = n.subtract(s);
-// //        }
-
-//             signature[0] = r.toString(16);
-//             signature[1] = s.toString(16);
-
-//         }while (isValidSignature(r,s));
-//         return formatSign(signature);
-//     }
-
-    /**
-     * signature 补0
+     * signature
      * @param signature
      * @return
      */
@@ -153,65 +99,19 @@ public class ED25519core {
     }
 
     /**
-     * 验证签名正确性，兼容Ethereum,符合BIP0062
      * see https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki#Low_S_values_in_signatures
      * @param r
      * @param s
      * @return
      */
     public boolean isValidSignature(BigInteger r,BigInteger s){
-//        boolean flag = false;
-//        String sS = s.toString(16);
-//        if(r.toString(16).length()==64 && s.toString(16).length()==64 ){
-//            flag = true;
-//        }
+    //        boolean flag = false;
+    //        String sS = s.toString(16);
+    //        if(r.toString(16).length()==64 && s.toString(16).length()==64 ){
+    //            flag = true;
+    //        }
 
         return n.divide(new BigInteger("2")).compareTo(s) < 0;
-    }
-
-
-//    public void sign(byte[] message,String privateKey,Point publicKeyPoint){
-//        BigInteger k = new BigInteger("6b99",16);
-//        r = fastMultiply(k).getX().mod(p);
-//        s = (new BigInteger(HEX.decode(message),16).add(new BigInteger(privateKey,16).multiply(r))).multiply(k.modInverse(n)).mod(n);
-//        System.out.println("r: "+r.toString() + " s: "+s.toString());
-//    }
-
-//    public void signeth(byte[] message,String privateKey,Point publicKeyPoint){
-//        BigInteger k = new BigInteger("f17855954749dd1275ef93ce033f52c355feb3ee2ac070cc31bd57c195e3aff7",16);
-//        Point z = fastMultiply(k);
-//        r = z.getX().mod(p);
-//        s = new BigInteger(message).add(new BigInteger(privateKey,16).multiply(r)).multiply(k.modInverse(n)).mod(n);
-//        if(z.getY().mod(new BigInteger("2")).intValue() == 0){
-//            System.out.println("k: 0");
-//        }else {
-//            System.out.println("k: 1");
-//        }
-//        System.out.println("r: "+r.toString(16) + " s: "+s.toString(16));
-//    }
-
-    /**
-     * verify method
-     * @author William Liu
-     * @param message
-     * @param rS
-     * @param sS
-     * @param publicKeyPoint
-     */
-    public void verify(String message,String rS,String sS,Point publicKeyPoint){
-        BigInteger r = new BigInteger(rS,16);
-        BigInteger s = new BigInteger(sS,16);
-        BigInteger w = s.modInverse(n);
-        BigInteger u1 = w.multiply(new BigInteger(message,16)).mod(n);
-        BigInteger u2 = w.multiply(r).mod(n);
-        Point point = add(fastMultiply(u1),fastMultiplyWithPoint(u2,publicKeyPoint));
-        System.out.println(publicKeyPoint);
-        System.out.println(point);
-        if(r.equals(point.getX().mod(n))){
-            System.out.println("Verifyed");
-        }else {
-            System.out.println("error!");
-        }
     }
 
 
@@ -229,7 +129,7 @@ public class ED25519core {
 
 
     /**
-     * point add method 点加法
+     * point add method
      * @param pointG
      * @param pointQ
      * @return
@@ -259,7 +159,7 @@ public class ED25519core {
     }
 
     /**
-     * point double method 点乘法
+     * point double method
      * @param pointG
      * @return
      */
@@ -289,7 +189,6 @@ public class ED25519core {
     }
 
     /**
-     * 判断坐标点是否在椭圆曲线上
      * ax² + y² = 1 + d * x² * y²
      * @param point
      * @return

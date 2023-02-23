@@ -38,9 +38,8 @@ public class ECDSAcore {
 
 
     /**
-     * 签名
      * @author William Liu
-     * @param message 消息的hash
+     * @param message 
      * @param privateKey
      * @return
      */
@@ -56,9 +55,9 @@ public class ECDSAcore {
             //standrad bitcoin signature SIG is <r><s> concatenated together.
             // We need to check s < N/2 where N is the curve order, .
             // If s>N/2, then s = N-s
-//        if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
-//            s = n.subtract(s);
-//        }
+            // if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
+            //    s = n.subtract(s);
+            // }
 
             signature[0] = r.toString(16);
             signature[1] = s.toString(16);
@@ -79,9 +78,9 @@ public class ECDSAcore {
             //standrad bitcoin signature SIG is <r><s> concatenated together.
             // We need to check s < N/2 where N is the curve order, .
             // If s>N/2, then s = N-s
-//        if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
-//            s = n.subtract(s);
-//        }
+            // if (n.divide(BigInteger.TWO).compareTo(s) < 0) {
+            //     s = n.subtract(s);
+            // }
 
             signature[0] = r.toString(16);
             signature[1] = s.toString(16);
@@ -91,7 +90,7 @@ public class ECDSAcore {
     }
 
     /**
-     * signature 补0
+     * signature 
      * @param signature
      * @return
      */
@@ -109,42 +108,41 @@ public class ECDSAcore {
     }
 
     /**
-     * 验证签名正确性，兼容Ethereum,符合BIP0062
      * see https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki#Low_S_values_in_signatures
      * @param r
      * @param s
      * @return
      */
     public boolean isValidSignature(BigInteger r,BigInteger s){
-//        boolean flag = false;
-//        String sS = s.toString(16);
-//        if(r.toString(16).length()==64 && s.toString(16).length()==64 ){
-//            flag = true;
-//        }
+    //        boolean flag = false;
+    //        String sS = s.toString(16);
+    //        if(r.toString(16).length()==64 && s.toString(16).length()==64 ){
+    //            flag = true;
+    //        }
 
         return n.divide(new BigInteger("2")).compareTo(s) < 0;
     }
 
 
-//    public void sign(byte[] message,String privateKey,Point publicKeyPoint){
-//        BigInteger k = new BigInteger("6b99",16);
-//        r = fastMultiply(k).getX().mod(p);
-//        s = (new BigInteger(HEX.decode(message),16).add(new BigInteger(privateKey,16).multiply(r))).multiply(k.modInverse(n)).mod(n);
-//        System.out.println("r: "+r.toString() + " s: "+s.toString());
-//    }
-//
-//    public void signeth(byte[] message,String privateKey,Point publicKeyPoint){
-//        BigInteger k = new BigInteger("f17855954749dd1275ef93ce033f52c355feb3ee2ac070cc31bd57c195e3aff7",16);
-//        Point z = fastMultiply(k);
-//        r = z.getX().mod(p);
-//        s = new BigInteger(message).add(new BigInteger(privateKey,16).multiply(r)).multiply(k.modInverse(n)).mod(n);
-//        if(z.getY().mod(new BigInteger("2")).intValue() == 0){
-//            System.out.println("k: 0");
-//        }else {
-//            System.out.println("k: 1");
-//        }
-//        System.out.println("r: "+r.toString(16) + " s: "+s.toString(16));
-//    }
+   public void sign(byte[] message,String privateKey,Point publicKeyPoint){
+       BigInteger k = new BigInteger("6b99",16);
+       r = fastMultiply(k).getX().mod(p);
+       s = (new BigInteger(HEX.decode(message),16).add(new BigInteger(privateKey,16).multiply(r))).multiply(k.modInverse(n)).mod(n);
+       System.out.println("r: "+r.toString() + " s: "+s.toString());
+   }
+
+   public void signeth(byte[] message,String privateKey,Point publicKeyPoint){
+       BigInteger k = new BigInteger("f17855954749dd1275ef93ce033f52c355feb3ee2ac070cc31bd57c195e3aff7",16);
+       Point z = fastMultiply(k);
+       r = z.getX().mod(p);
+       s = new BigInteger(message).add(new BigInteger(privateKey,16).multiply(r)).multiply(k.modInverse(n)).mod(n);
+       if(z.getY().mod(new BigInteger("2")).intValue() == 0){
+           System.out.println("k: 0");
+       }else {
+           System.out.println("k: 1");
+       }
+       System.out.println("r: "+r.toString(16) + " s: "+s.toString(16));
+   }
 
     /**
      * verify method
@@ -183,7 +181,7 @@ public class ECDSAcore {
     }
 
     /**
-     * point add method 点加法
+     * point add method 
      * @param pointG
      * @param pointQ
      * @return
@@ -204,7 +202,7 @@ public class ECDSAcore {
     }
 
     /**
-     * point double method 点乘法
+     * point double method 
      * @param pointG
      * @return
      */
@@ -225,7 +223,6 @@ public class ECDSAcore {
     }
 
     /**
-     * 判断坐标点是否在椭圆曲线上
      * @param point
      * @return
      */
@@ -252,7 +249,6 @@ public class ECDSAcore {
         return v;
     };
 
-    // 恢复紧凑编码 64 bytes 签名对应的公钥
     public Point recoverPubkeyCompactEncoded(String message, String r, String vs, int chainId) {
         String firstHex = vs.substring(0, 1);
 
@@ -288,7 +284,6 @@ public class ECDSAcore {
         BigInteger y = beta;
         int recoverId = chainId == 1 ? v - 27 : v - 2 * chainId - 35;
   
-        // isOdd 代表的是真实的 Rx 的奇偶性，如果与 beta 的奇偶性不同，则需要翻转
         boolean isOdd = (recoverId % 2) > 0;
         if ((y.intValue()%2 == 0) ^ (!isOdd) ) {
             y = p.subtract(y);

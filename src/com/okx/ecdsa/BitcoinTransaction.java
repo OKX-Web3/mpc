@@ -7,7 +7,7 @@ import java.util.BitSet;
 
 public class BitcoinTransaction {
     /**
-     * bitcoin转账
+     * bitcoin
      * @param unspent
      * @param from
      * @param to
@@ -55,7 +55,6 @@ public class BitcoinTransaction {
     }
 
     /**
-     * P2PKH类型钱包Tx构建
      * see https://bitcoin.stackexchange.com/questions/3374/how-to-redeem-a-basic-tx
      * @return
      */
@@ -90,7 +89,6 @@ public class BitcoinTransaction {
     }
 
     /**
-     * P2PKH类型钱包Tx签名
      * @param signatureDER
      * @param pubKey
      * @return

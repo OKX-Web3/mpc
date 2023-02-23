@@ -59,10 +59,10 @@ public class PaillierTest {
 		a = PaillierCipher.decrypt(a, sk);
         System.out.println(a);
 
-        // encrypt(10 + 10) = encrypt(10).add(encrypt(10)), encrypt函数即是从G->H的群同态函数
+        // encrypt(10 + 10) = encrypt(10).add(encrypt(10))
         System.out.println("======= test addition ========");
 		a = PaillierCipher.encrypt(a, pk);        
-		a = PaillierCipher.add(a, a, pk);       // 这里的add实际上是相乘后取模
+		a = PaillierCipher.add(a, a, pk);      
 		a = PaillierCipher.decrypt(a, sk);  //20
         System.out.println(a);
 

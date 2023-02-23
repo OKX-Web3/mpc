@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class TestUnit {
     /**
-     * 测试 ECDSA
+     * test ECDSA
      * @param args
      */
     public static void main(String[] args) {
@@ -47,13 +47,8 @@ public class TestUnit {
 
 //        acore.verify("what's your name","103118741554904166099415461986422295381639424360161428629979510531057770939640","39963258286450301240790965649009481829365546214028056817606659598007810920669",r);
 
-
-
-
 //        String pkey = "359d88771ebbbdefd2356a805af66b4243ab5ca30bb34fe154a0bd49fc4b9b40";
 
-
-//       私钥生成比特币地址和以太坊地址
 //        String pkey = "ecbcd9838f7f2afa6e809df8d7cdae69aa5dfc14d563ee98e97effd3f6a652f2";
 //        Point pk = acore.fastMultiply(new BigInteger("888"));
 //        System.out.println(pk.getX().toString(16));
@@ -71,10 +66,8 @@ public class TestUnit {
 //        System.out.println(acore.publicKey2ETHAddress(pk));
 
 
-//        比特币私钥导入格式
 //        System.out.println(acore.bitcoinWIF("Ky1w1yie629vcmHVB1V4jnEZLCSUN14USjyLmi9HMywZqeKFE4at"));
 
-//        构建RAW tx
 //        String tx = "00"+"0"+ new BigInteger("20000000000").toString(16)+"0"+ new BigInteger("43092000").toString(16)+"1f633815d413d55ae65494768a8ca287573cee51"+"0"+new BigInteger("1").toString(16)+"c0de";
 //        acore.sign(acore.hexStringToBytes(acore.getSHA(RlpEncoder.encode(RlpString.create(acore.hexStringToBytes(tx))),"SHA-256")),"359d88771ebbbdefd2356a805af66b4243ab5ca30bb34fe154a0bd49fc4b9b40",pk);
 //        String r = new BigInteger("20694884568225431318140277903774850116350559821322120592748898802466728091894").toString(16);
@@ -85,7 +78,6 @@ public class TestUnit {
 //        String txRaw = tx+"2b"+r+s;
 //        System.out.println(acore.bytesToHexString(RlpEncoder.encode(RlpString.create(acore.hexStringToBytes(txRaw)))));
 
-//        构建raw
 //        List<RlpType> result = new ArrayList<>();
 //        result.add(RlpString.create(new BigInteger("15")));  //nonce 0
 //        result.add(RlpString.create(new BigInteger("20000000000")));
@@ -105,14 +97,11 @@ public class TestUnit {
 //        System.out.println(dsha);
 //        System.out.println(HashUtil.dhash(constru));
 
-        System.out.println("私钥"+ HEX.decode(Base58.decode("KxqhyxvUNATvLjcQvGU24u6Q72SH98BordnkqgUvMfyxo5ws1wxj")));
+        System.out.println("private key: "+ HEX.decode(Base58.decode("KxqhyxvUNATvLjcQvGU24u6Q72SH98BordnkqgUvMfyxo5ws1wxj")));
 
 
-        String  siyao = "3f40fe1c86e3ebcabbd6edd01956e15528639cfe93ae060b73c7cea30a003dac";
-        Point gongyao = acore.fastMultiply(new BigInteger(siyao,16));
-        //System.out.println(gongyao);
-//        acore.sign("e66b08f94ace20cfb18ca7ff502e08ec7a4c2d8956c4230cb0b726b469a35d57",siyao,gongyao,HashUtil.getSHA(siyao+constru,"SHA-256"));
-
+        String  prik = "3f40fe1c86e3ebcabbd6edd01956e15528639cfe93ae060b73c7cea30a003dac";
+        Point pubk = acore.fastMultiply(new BigInteger(prik,16));
 
         String dercode  = "ad0cccc88994f8b2186d74b0b330c516f8103f2a2b1740d47e375412ca5368fb";
 

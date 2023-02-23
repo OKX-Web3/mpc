@@ -38,31 +38,20 @@ public class StarkEcTest {
 
     public static void main(String[] args) throws HomomorphicException {
         ECDSAcore acore = new ECDSAcore();
-        // 1. 随机生成你的私钥
 
         String privatekey = PRI_KEY;
-        System.out.println("=============== 1. 随机生成私钥 =================");
-        System.out.println(privatekey);
 
-        // 2. 计算私钥对应的公钥
         Point publickey = acore.fastMultiply(new BigInteger(privatekey, 16));
-        System.out.println("=============== 2. 使用椭圆曲线乘法计算公钥 =================");
-        System.out.println(publickey);
-        System.out.println("JS版本的PUB_KEY是否相等: " + (PUB_KEY.equals(publickey.getX().toString(16))));
+        System.out.println("PUB_KEY eques ? " + (PUB_KEY.equals(publickey.getX().toString(16))));
         
-        // // 5. 私钥签名
         // String[] signatures = acore.sign(msgHash, privatekey);
-        // System.out.println("=============== 4. 签名 =================");
         // System.out.println("java r:" + signatures[0] + ", js r:" + r);
         // System.out.println("java s:" + signatures[1] + ", js s:" + s);
 
-        // 6. 公钥验签
-        System.out.println("=============== 5. 验证签名 =================");
         System.out.println("msgHash.length: " + msgHash.length());
 
         acore.verify(msgHash, r, s, publickey);
 
-        // System.out.println("=============== 6. 验证签名2 =================");
         Point point1 = acore.recoverPubkey(msgHash, r, s, 27, 1);
         Point point2 = acore.recoverPubkey(msgHash, r, s, 28, 1);
         System.out.println("point2 X: " + point2.getX().toString(16));

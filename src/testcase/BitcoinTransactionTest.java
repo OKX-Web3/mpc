@@ -14,7 +14,6 @@ public class BitcoinTransactionTest {
     }
 
     /**
-     * 成功转账btc
      * https://live.blockcypher.com/btc-testnet/tx/71e28f2dc513c977f2d3787a6b9df956db25ec2e8830f17f1dde7c13feb53875/
      */
     public static void testsendFund(){
@@ -28,7 +27,6 @@ public class BitcoinTransactionTest {
     }
 
     /**
-     * 测试成功转账btc
      *
      */
     public static void testbuildP2PKHTransaction(){

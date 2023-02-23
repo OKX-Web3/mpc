@@ -47,11 +47,9 @@ public class PublicKeyRecoverTest {
     //     String privateKey = "59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d";
     //     Point PublicKey = acore.fastMultiply(new BigInteger(privateKey,16));
     //     String Account = util.getEthereumAddressWithPublicKey(PublicKey);
-    //     System.out.println("真实的账户地址: ");
     //     System.out.println("Account: " + Account);
 
 
-    //     // 1. 生成以太坊签名 r,s,v
     //     BigInteger random_k = new BigInteger("171963177ac61f96094e2506a1a11d5329f992a18a1d62174560a03a78767313",16);
     //     Point R0 = acore.fastMultiply(random_k);
     //     BigInteger r0 = R0.getX();
@@ -66,21 +64,17 @@ public class PublicKeyRecoverTest {
     //     System.out.println("s: " + s.toString(16));
     //     System.out.println("v: " + v);
 
-    //     // 2. 根据 message, r, s, v 恢复public key
     //     Point Q = acore.recoverPubkey(message, r, s, v, chainId);
     //     String RecoveredAccount = util.getEthereumAddressWithPublicKey(Q);
 
-    //     System.out.println("根据 message, r, s, v 恢复账户地址: ");
     //     System.out.println("Recovered Public Key Point: " + Q);
     //     System.out.println("Recovered Account: " + RecoveredAccount);
 
-    //     // 3. 在只有 message, r, s 的情况下，恢复出两个可能的公钥
     //     Point Q1 = acore.recoverPubkey(message, r, s, 27, chainId);
     //     Point Q2 = acore.recoverPubkey(message, r, s, 28, chainId);
     //     String PotentialAccount1 = util.getEthereumAddressWithPublicKey(Q1);
     //     String PotentialAccount2 = util.getEthereumAddressWithPublicKey(Q2);
 
-    //     System.out.println("根据 message, r, s  恢复两个可能的账户地址: ");
     //     System.out.println("PotentialAccount1: " + PotentialAccount1);
     //     System.out.println("PotentialAccount2: " + PotentialAccount2);
 

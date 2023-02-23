@@ -2,12 +2,8 @@ package com.okx.ecdsa.utils;
 
 import java.math.BigInteger;
 
-/**
- * 以太坊协议构建工具包
- */
 public class EthereumUtil {
     /**
-     * 返回函数hash
      *
      * @param func
      * @return
@@ -17,7 +13,6 @@ public class EthereumUtil {
     }
 
     /**
-     * 获取data数据的前4 bytes
      *
      * @param data
      * @return
@@ -27,7 +22,6 @@ public class EthereumUtil {
     }
 
     /**
-     * 整数byte 32格式
      * @param number
      * @return
      */
@@ -40,7 +34,6 @@ public class EthereumUtil {
     }
 
     /**
-     * 地址byte 32格式
      * @param address
      * @return
      */
@@ -53,7 +46,6 @@ public class EthereumUtil {
     }
 
     /**
-     * 数据byte 32格式
      * @param hex
      * @return
      */
@@ -66,7 +58,7 @@ public class EthereumUtil {
 
     /**
      * ABI
-     * 以下函数名为dynamic
+     * dynamic
      * bytes
      * string
      * T[] for any T

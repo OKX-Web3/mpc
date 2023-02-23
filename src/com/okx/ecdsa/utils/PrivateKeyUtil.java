@@ -10,7 +10,6 @@ import java.math.BigInteger;
 
 public class PrivateKeyUtil {
     /**
-     * 获取以太坊地址 EIP55
      * see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md
      * @param priv
      * @return
@@ -32,7 +31,6 @@ public class PrivateKeyUtil {
     }
 
        /**
-     * 获取以太坊地址 EIP55
      * see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md
      * @param priv
      * @return
@@ -51,7 +49,6 @@ public class PrivateKeyUtil {
         return "0x"+stringBuilder.toString();
     }
     /**
-     * 获取btc主网地址
      * @param priv
      * @return
      */
@@ -64,7 +61,6 @@ public class PrivateKeyUtil {
     }
 
         /**
-     * 获取btc主网地址
      * @param priv
      * @return
      */
@@ -77,7 +73,6 @@ public class PrivateKeyUtil {
 
 
     /**
-     * 获取btc测试网地址
      * @param priv
      * @return
      */
@@ -90,7 +85,6 @@ public class PrivateKeyUtil {
     }
 
     /**
-     * 转换公钥为非压缩格式输出
      * @author William Liu
      * @param publicKey
      * @return
@@ -104,7 +98,6 @@ public class PrivateKeyUtil {
     }
 
     /**
-     * 转换公钥为压缩格式输出
      * @author William Liu
      * @param publicKey
      * @return
@@ -120,10 +113,5 @@ public class PrivateKeyUtil {
         stringBuilder.append(publicKey.getX().toString(16));
         return  stringBuilder.toString();
     }
-
-
-
-
-
 
 }
