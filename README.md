@@ -1,1 +1,1 @@
-# Multi-Party Signature Scheme, for ECDSA and EDDSA
+# Multi-Party Signature Scheme
